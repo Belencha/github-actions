@@ -9,7 +9,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Hello watcher!
+      - name: Hello watcher!!
         run: echo "Hellooooo!!! from ${{ github.workflow }} triggered by the ${{ github.event_name}} done by ${{ github.actor }}"
 
       - name: 😁 More and more!
