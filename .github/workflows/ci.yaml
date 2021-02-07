@@ -24,6 +24,10 @@ jobs:
           echo "Job context: $JOB_CONTEXT"
           echo "Done!"
 
+      - name: Greeting if Windows
+        if: matrix.os == 'windows-latest'
+        run: echo "Hey from Win2!"
+
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
