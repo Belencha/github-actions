@@ -4,8 +4,13 @@ on: [push, pull_request]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macOS-latest]
+        php-versions: ['7.2', '7.3']
 
+    name: ${{ matrix.os }} PHP ${{ matrix.php-versions }}
     steps:
       - uses: actions/checkout@v2
 
@@ -18,3 +23,11 @@ jobs:
         run: |
           echo "Job context: $JOB_CONTEXT"
           echo "Done!"
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v1
+        with:
+          php-version: ${{ matrix.php-versions }}
+          coverage: none
+
+      
